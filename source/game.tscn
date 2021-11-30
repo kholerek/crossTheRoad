@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/characters/playerKing.tscn" type="PackedScene" id=1]
+[ext_resource path="res://backgroud.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "testPlayerAnimation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("playerKing:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 32, 614.306 ), Vector2( 1248, 614.306 ) ]
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="backgroud" parent="." instance=ExtResource( 2 )]
+
+[node name="playerKing" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1248, 614.306 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "testPlayerAnimation"
+anims/testPlayerAnimation = SubResource( 1 )
