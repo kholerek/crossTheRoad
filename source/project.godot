@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="crossTheRoad"
-run/main_scene="res://backgroud.tscn"
+run/main_scene="res://game.tscn"
 config/icon="res://icon.png"
 
 [display]
