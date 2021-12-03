@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/cars/Car red front.png" type="Texture" id=1]
+[ext_resource path="res://assets/scripts/car.gd" type="Script" id=2]
+
+[node name="redCar" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -84.0
+margin_top = -168.0
+margin_right = 84.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -40, -152, -24, -168, 24, -168, 40, -152, 40, -16, 16, 0, -16, 0, -40, -16 )
+
+[connection signal="body_entered" from="." to="." method="_on_car_body_entered" binds= [ "red car" ]]
