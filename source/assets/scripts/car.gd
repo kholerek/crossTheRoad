@@ -20,6 +20,7 @@ func _process(delta):
 	if position.y >= mapBottom:
 		time = 0
 		position.y = mapTop
+		queue_free()
 		
 func _on_car_body_entered(_body, name):
 	print("collision with " + name)
