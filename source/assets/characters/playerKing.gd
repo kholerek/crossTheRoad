@@ -11,6 +11,8 @@ var time = 0
 var timeDirection
 var playerDirection = playerState.IDLE
 var lastDirection = playerState.IDLE
+var gameNotStarted = true
+var points = 0
 
 onready var stateLabel = $debugContainer/stateLabel
 onready var positionLabel = $debugContainer/positionLabel
@@ -34,10 +36,11 @@ func _process(delta):
 			#actions
 			timeDirection = playerState.IDLE
 			#conditions for transitions
-			if Input.is_action_just_pressed("ui_accept") and (lastDirection == playerState.RUN_LEFT or lastDirection == playerState.IDLE):
-				playerDirection = playerState.RUN_RIGHT
-			if Input.is_action_just_pressed("ui_accept") and lastDirection == playerState.RUN_RIGHT:
-				playerDirection = playerState.RUN_LEFT
+			if gameNotStarted == false:
+				if Input.is_action_just_pressed("ui_accept") and (lastDirection == playerState.RUN_LEFT or lastDirection == playerState.IDLE):
+					playerDirection = playerState.RUN_RIGHT
+				if Input.is_action_just_pressed("ui_accept") and lastDirection == playerState.RUN_RIGHT:
+					playerDirection = playerState.RUN_LEFT
 				
 		playerState.RUN_RIGHT:
 			#actions
@@ -49,6 +52,7 @@ func _process(delta):
 				time = moveDuration
 				position.x = rightPosition
 				playerDirection = playerState.IDLE
+				points = points+1
 				
 		playerState.RUN_LEFT: 
 			#actions
@@ -60,6 +64,7 @@ func _process(delta):
 				time = 0
 				position.x = leftPosition
 				playerDirection = playerState.IDLE
+				points = points+1
 
 	# delta is how long it takes to complete a frame.
 	time += delta * timeDirection

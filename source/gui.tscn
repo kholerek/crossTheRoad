@@ -1,0 +1,257 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/objects/clock.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/FFFFORWA.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://gui.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.054902, 0.0705882, 0.247059, 1 )
+anti_aliasing = false
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 26
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 55
+font_data = ExtResource( 2 )
+
+[node name="gui" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timeAndPoints" type="Control" parent="."]
+visible = false
+margin_left = 1050.0
+margin_right = 1050.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="ColorRect" parent="timeAndPoints"]
+margin_right = 230.0
+margin_bottom = 60.0
+color = Color( 1, 1, 1, 0.705882 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="seconds" type="Label" parent="timeAndPoints"]
+margin_left = 60.0
+margin_top = 18.0
+margin_right = 141.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "11.1 s"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="points" type="Label" parent="timeAndPoints"]
+margin_left = 170.0
+margin_top = 18.0
+margin_right = 230.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "999"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clockImage" type="TextureRect" parent="timeAndPoints"]
+margin_left = 8.0
+margin_top = 9.0
+margin_right = 288.0
+margin_bottom = 309.0
+rect_scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 1 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="startMenu" type="Control" parent="."]
+visible = false
+margin_left = 440.0
+margin_top = 210.0
+margin_right = 480.0
+margin_bottom = 250.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="ColorRect" parent="startMenu"]
+margin_right = 400.0
+margin_bottom = 300.0
+color = Color( 1, 1, 1, 0.705882 )
+
+[node name="gameTitleLabel" type="Label" parent="startMenu"]
+margin_left = 57.0
+margin_top = 37.0
+margin_right = 350.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.921569, 0.219608, 0.301961, 1 )
+text = "cross The road"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="startButton" type="Button" parent="startMenu"]
+margin_left = 50.0
+margin_top = 120.0
+margin_right = 350.0
+margin_bottom = 180.0
+focus_neighbour_left = NodePath("../highscoreButton")
+focus_neighbour_top = NodePath("../highscoreButton")
+focus_neighbour_right = NodePath("../highscoreButton")
+focus_neighbour_bottom = NodePath("../highscoreButton")
+focus_next = NodePath("../highscoreButton")
+focus_previous = NodePath("../highscoreButton")
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.894118, 0.690196, 0.133333, 1 )
+custom_colors/font_color_pressed = Color( 0.894118, 0.690196, 0.133333, 1 )
+text = "Start Game"
+
+[node name="highscoreButton" type="Button" parent="startMenu"]
+margin_left = 50.0
+margin_top = 210.0
+margin_right = 350.0
+margin_bottom = 270.0
+focus_neighbour_left = NodePath("../startButton")
+focus_neighbour_top = NodePath("../startButton")
+focus_neighbour_right = NodePath("../startButton")
+focus_neighbour_bottom = NodePath("../startButton")
+focus_next = NodePath("../startButton")
+focus_previous = NodePath("../startButton")
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.894118, 0.690196, 0.133333, 1 )
+custom_colors/font_color_pressed = Color( 0.894118, 0.690196, 0.133333, 1 )
+text = "Highscore"
+
+[node name="highscoreMenu" type="Control" parent="."]
+visible = false
+margin_left = 440.0
+margin_top = 210.0
+margin_right = 480.0
+margin_bottom = 250.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="ColorRect" parent="highscoreMenu"]
+margin_right = 400.0
+margin_bottom = 300.0
+color = Color( 1, 1, 1, 0.705882 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscoreTitleLabel" type="Label" parent="highscoreMenu"]
+margin_left = 50.0
+margin_top = 37.0
+margin_right = 350.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.921569, 0.219608, 0.301961, 1 )
+text = "highscore"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="backButton" type="Button" parent="highscoreMenu"]
+margin_left = 50.0
+margin_top = 210.0
+margin_right = 350.0
+margin_bottom = 270.0
+focus_neighbour_left = NodePath("../startButton")
+focus_neighbour_top = NodePath("../startButton")
+focus_neighbour_right = NodePath("../startButton")
+focus_neighbour_bottom = NodePath("../startButton")
+focus_next = NodePath("../startButton")
+focus_previous = NodePath("../startButton")
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.894118, 0.690196, 0.133333, 1 )
+custom_colors/font_color_pressed = Color( 0.894118, 0.690196, 0.133333, 1 )
+text = "back"
+
+[node name="highscoreLabel" type="Label" parent="highscoreMenu"]
+margin_left = 50.0
+margin_top = 123.0
+margin_right = 350.0
+margin_bottom = 160.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.215686, 0.764706, 0.305882, 1 )
+text = "KAMIL 12"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="pressSpacebarMenu" type="Control" parent="."]
+visible = false
+margin_top = 295.0
+margin_right = 1280.0
+margin_bottom = 425.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="ColorRect" parent="pressSpacebarMenu"]
+margin_right = 1280.0
+margin_bottom = 130.0
+color = Color( 0.054902, 0.0705882, 0.247059, 0.705882 )
+
+[node name="pressSpacebarLabel" type="Label" parent="pressSpacebarMenu"]
+margin_right = 1280.0
+margin_bottom = 130.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.894118, 0.690196, 0.133333, 1 )
+text = "press spacebar to go"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="startMenu/startButton" to="." method="_on_startButton_pressed"]
+[connection signal="pressed" from="startMenu/highscoreButton" to="." method="_on_highscoreButton_pressed"]
+[connection signal="pressed" from="highscoreMenu/backButton" to="." method="_on_backButton_pressed"]

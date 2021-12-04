@@ -16,15 +16,16 @@ var arrayOfLines = [125, 260, 460, 605, 832, 954, 1154]
 var arrayOfCars = [blueCar, busCar, greyCar, policeCar, redCar, schoolCar, taxiCar, truckCar, yellowCar]
 var maxCarsOnTheRoad = 2
 var randomNumber = RandomNumberGenerator.new()
+var gameNotStarted = true
+var trafficOn = false
 
 func _ready():
 	pass
 
 func _process(_delta):
-	if get_child_count() < maxCarsOnTheRoad:
+	if get_child_count() < maxCarsOnTheRoad and not gameNotStarted:
 		randomCarRandomLine(2.5, 5.5)
-	if Input.is_action_just_pressed("ui_left"):
-		debugIsLinesFree()
+		trafficOn = true
 
 func generateCar(type, line, travelTime):
 	var newCar = type.instance()
