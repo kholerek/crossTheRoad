@@ -93,6 +93,9 @@ func setPoints(points):
 	pointsLabel.text = String(points)
 	
 func setTimeInMiliseconds(miliseconds):
-	var timeToDisplay = miliseconds/1000.0
-	secondsLabel.text = String(stepify(timeToDisplay,0.1))+" s"
-	
+	var timeToDisplay = String(stepify((miliseconds/1000.0),0.1))
+	#I haven't found a better way
+	if timeToDisplay.find(".") == -1:
+		timeToDisplay += ".0"
+	secondsLabel.text = timeToDisplay +" s"
+	pass	
