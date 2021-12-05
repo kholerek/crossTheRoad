@@ -10,11 +10,14 @@ const schoolCar = preload("res://assets/cars/schoolCar.tscn")
 const taxiCar = preload("res://assets/cars/taxiCar.tscn")
 const truckCar = preload("res://assets/cars/truckCar.tscn")
 const yellowCar = preload("res://assets/cars/yellowCar.tscn")
+const maximumTravelTime = 5.5 #in seconds
+const arrayOfLines = [125, 260, 460, 605, 832, 954, 1154]
+const arrayOfCars = [blueCar, busCar, greyCar, policeCar, redCar, schoolCar, taxiCar, truckCar, yellowCar]
 
 #variables
-var arrayOfLines = [125, 260, 460, 605, 832, 954, 1154]
-var arrayOfCars = [blueCar, busCar, greyCar, policeCar, redCar, schoolCar, taxiCar, truckCar, yellowCar]
 var maxCarsOnTheRoad = 2
+var minumumTravelTime = 4
+
 var randomNumber = RandomNumberGenerator.new()
 var gameNotStarted = true
 var trafficOn = false
@@ -24,7 +27,7 @@ func _ready():
 
 func _process(_delta):
 	if get_child_count() < maxCarsOnTheRoad and not gameNotStarted:
-		randomCarRandomLine(2.5, 5.5)
+		randomCarRandomLine(minumumTravelTime, maximumTravelTime)
 		trafficOn = true
 
 func generateCar(type, line, travelTime):

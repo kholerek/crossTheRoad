@@ -1,31 +1,36 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/objects/clock.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/FFFFORWA.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://gui.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 24
+size = 22
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 12
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 30
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.054902, 0.0705882, 0.247059, 1 )
 anti_aliasing = false
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 26
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 55
 font_data = ExtResource( 2 )
 
@@ -38,7 +43,6 @@ __meta__ = {
 }
 
 [node name="timeAndPoints" type="Control" parent="."]
-visible = false
 margin_left = 1050.0
 margin_right = 1050.0
 __meta__ = {
@@ -90,6 +94,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="debugContainer" type="Control" parent="."]
+visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="ColorRect" parent="debugContainer"]
+margin_right = 400.0
+margin_bottom = 30.0
+color = Color( 1, 1, 1, 0.54902 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="debug1Label" type="Label" parent="debugContainer"]
+margin_left = 5.0
+margin_top = 7.0
+margin_right = 190.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="debug2Label" type="Label" parent="debugContainer"]
+margin_left = 200.0
+margin_top = 7.0
+margin_right = 392.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="startMenu" type="Control" parent="."]
 visible = false
 margin_left = 440.0
@@ -110,7 +150,7 @@ margin_left = 57.0
 margin_top = 37.0
 margin_right = 350.0
 margin_bottom = 79.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.921569, 0.219608, 0.301961, 1 )
 text = "cross The road"
 align = 1
@@ -130,12 +170,12 @@ focus_neighbour_right = NodePath("../highscoreButton")
 focus_neighbour_bottom = NodePath("../highscoreButton")
 focus_next = NodePath("../highscoreButton")
 focus_previous = NodePath("../highscoreButton")
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.894118, 0.690196, 0.133333, 1 )
 custom_colors/font_color_pressed = Color( 0.894118, 0.690196, 0.133333, 1 )
@@ -152,12 +192,12 @@ focus_neighbour_right = NodePath("../startButton")
 focus_neighbour_bottom = NodePath("../startButton")
 focus_next = NodePath("../startButton")
 focus_previous = NodePath("../startButton")
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.894118, 0.690196, 0.133333, 1 )
 custom_colors/font_color_pressed = Color( 0.894118, 0.690196, 0.133333, 1 )
@@ -186,7 +226,7 @@ margin_left = 50.0
 margin_top = 37.0
 margin_right = 350.0
 margin_bottom = 79.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.921569, 0.219608, 0.301961, 1 )
 text = "highscore"
 align = 1
@@ -206,12 +246,12 @@ focus_neighbour_right = NodePath("../startButton")
 focus_neighbour_bottom = NodePath("../startButton")
 focus_next = NodePath("../startButton")
 focus_previous = NodePath("../startButton")
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.894118, 0.690196, 0.133333, 1 )
 custom_colors/font_color_pressed = Color( 0.894118, 0.690196, 0.133333, 1 )
@@ -222,7 +262,7 @@ margin_left = 50.0
 margin_top = 123.0
 margin_right = 350.0
 margin_bottom = 160.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.215686, 0.764706, 0.305882, 1 )
 text = "KAMIL 12"
 align = 1
@@ -246,7 +286,7 @@ color = Color( 0.054902, 0.0705882, 0.247059, 0.705882 )
 [node name="pressSpacebarLabel" type="Label" parent="pressSpacebarMenu"]
 margin_right = 1280.0
 margin_bottom = 130.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.894118, 0.690196, 0.133333, 1 )
 text = "press spacebar to go"
 align = 1

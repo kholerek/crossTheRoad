@@ -18,6 +18,10 @@ onready var backButton = $highscoreMenu/backButton
 #pressSpacebar
 onready var pressSpacebarMenuControl = $pressSpacebarMenu
 
+#debugContainer
+onready var debug1Label = $debugContainer/debug1Label
+onready var debug2Label = $debugContainer/debug2Label
+
 #other variables
 var gameNotStarted = true
 var gameReadyToStart = false
