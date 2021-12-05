@@ -21,3 +21,5 @@ position = Vector2( 32, 615 )
 [node name="streetLights" parent="." instance=ExtResource( 4 )]
 
 [node name="gui" parent="." instance=ExtResource( 5 )]
+
+[connection signal="gameOver" from="." to="playerKing" method="_gameOver"]

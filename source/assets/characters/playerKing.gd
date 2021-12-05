@@ -5,7 +5,7 @@ export var rightPosition = 1240
 export var moveDuration = 3
 export var showDebugContainer = false
 
-enum playerState { IDLE=0, RUN_LEFT=-1, RUN_RIGHT=1 }
+enum playerState { IDLE=0, RUN_LEFT=-1, RUN_RIGHT=1, DEAD=2 }
 
 var time = 0
 var timeDirection
@@ -65,6 +65,11 @@ func _process(delta):
 				position.x = leftPosition
 				playerDirection = playerState.IDLE
 				points = points+1
+		
+		playerState.DEAD:
+			#actions
+			timeDirection = playerState.IDLE
+			#conditions for transitions
 
 	# delta is how long it takes to complete a frame.
 	time += delta * timeDirection
@@ -75,12 +80,17 @@ func _process(delta):
 	#Change animationSprite properties
 	match timeDirection:
 		0:
-			$animatedSprite.play("idle")
-			stateLabel.text = "idle"
-			if lastDirection == playerState.RUN_RIGHT:
-				$animatedSprite.flip_h = true;
-			else :
+			if playerDirection != playerState.DEAD:
+				$animatedSprite.play("idle")
+				stateLabel.text = "idle"
+				if lastDirection == playerState.RUN_RIGHT:
+					$animatedSprite.flip_h = true;
+				else :
+					$animatedSprite.flip_h = false;
+			else:
 				$animatedSprite.flip_h = false;
+				$animatedSprite.play("dead")
+				stateLabel.text = "dead"
 		1:
 			$animatedSprite.flip_h = false;
 			$animatedSprite.play("run")
@@ -101,3 +111,7 @@ func _process(delta):
 			stateLabel.text = "run right"
 		-1:
 			stateLabel.text = "run left"
+
+func _gameOver():
+	print("player dead")
+	playerDirection = playerState.DEAD

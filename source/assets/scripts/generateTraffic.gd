@@ -14,6 +14,8 @@ const maximumTravelTime = 5.5 #in seconds
 const arrayOfLines = [125, 260, 460, 605, 832, 954, 1154]
 const arrayOfCars = [blueCar, busCar, greyCar, policeCar, redCar, schoolCar, taxiCar, truckCar, yellowCar]
 
+signal collision
+
 #variables
 var maxCarsOnTheRoad = 2
 var minumumTravelTime = 4
@@ -35,6 +37,7 @@ func generateCar(type, line, travelTime):
 	newCar.position.x = arrayOfLines[line]
 	newCar.travelTime = travelTime
 	self.add_child(newCar)
+	newCar.connect("collision", self, "_on_car_collision")
 
 func randomCarRandomLine(slowestTravelTime, theFastestTravelTime):
 	randomNumber.randomize()
@@ -70,3 +73,6 @@ func debugIsLinesFree():
 		else:
 			print("line "+ String(n) + " is: occupied")
 	print()
+	
+func _on_car_collision(name):
+	emit_signal("collision", name)

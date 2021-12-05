@@ -15,8 +15,12 @@ onready var highscoreMenuControl = $highscoreMenu
 onready var highscoreLabel = $highscoreMenu/highscoreLabel
 onready var backButton = $highscoreMenu/backButton
 
-#pressSpacebar
-onready var pressSpacebarMenuControl = $pressSpacebarMenu
+#fullScreenNotification
+onready var fullScreenNotification = $fullScreenNotification
+onready var notificationLabel = $fullScreenNotification/notificationLabel
+
+#new highscore - yourName
+onready var yourNameEdit = $yourNameEdit
 
 #debugContainer
 onready var debug1Label = $debugContainer/debug1Label
@@ -25,14 +29,12 @@ onready var debug2Label = $debugContainer/debug2Label
 #other variables
 var gameNotStarted = true
 var gameReadyToStart = false
+var waitingForName = false
 
 func _ready():
 	#prepare screen
 	hideAllMenus()
 	showStartMenu()
-#	setPoints(0)
-#	setTimeInMiliseconds(1100)
-
 	
 func _input(event):
 	if event.is_action_pressed("ui_accept") and gameReadyToStart:
@@ -50,8 +52,20 @@ func showHighscoreMenu():
 	backButton.grab_focus()
 	
 func showPressSpacebarMenu():
-	pressSpacebarMenuControl.visible = true
+	notificationLabel.text = "press spacebar to go"
+	notificationLabel.add_color_override("font_color", Color(0.89, 0.69, 0.13, 1))
+	fullScreenNotification.visible = true
 	gameReadyToStart = true
+	
+func showNewHighscore():
+	yourNameEdit.visible = true
+	yourNameEdit.grab_focus()
+	waitingForName = true
+	
+func showGameOver(notification):
+	notificationLabel.text = notification
+	notificationLabel.add_color_override("font_color", Color(0.92, 0.22, 0.3, 1))
+	fullScreenNotification.visible = true
 	
 func showTimeAndPointsControl():
 	timeAndPointsControl.visible = true
@@ -59,7 +73,7 @@ func showTimeAndPointsControl():
 func hideAllMenus():
 	startMenuControl.visible = false
 	highscoreMenuControl.visible = false
-	pressSpacebarMenuControl.visible = false
+	fullScreenNotification.visible = false
 	timeAndPointsControl.visible = false
 	
 #signals from buttons
