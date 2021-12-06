@@ -1,5 +1,4 @@
 toDo crossTheRoad
-- highscore
 - change color of time (yellow bellow 10, red bellow 5s)
 - music (intro, game, gameover, time bellow 10, time bellow 5)
 - extras (higher player speed, add time, bonus point)
