@@ -30,10 +30,6 @@ func _process(_delta):
 			timerGameOver.start()
 			player.gameNotStarted = false
 	
-	#when game is over and player press spacebar
-	if gameOver and Input.is_action_just_pressed("ui_accept"):
-		get_tree().reload_current_scene()
-	
 	#update amount of points and time
 	gui.setPoints(player.points)
 	gui.setTimeInMiliseconds(timerGameOver.time_left*1000)
@@ -70,15 +66,26 @@ func _on_car_collision(name):
 	
 func gameIsOver(type, car):
 	gameOver = true
+	gui.gameOver = true
+	var newHighscore = false
+	
+	if player.points > gui.highscorePoints:
+		newHighscore = true
+
 	match type:
 		1: #timeout
 			timerGameOver.stop()
-			gui.showGameOver("GAME OVER! Time is out")
+			#show notification if not new highscore
+			if not newHighscore:
+				gui.showGameOver("GAME OVER! Time is out")
+			else:
+				gui.showNewHighscore()
 		2: #killed by car
 			timerGameOver.set_paused(true)
 			#signal to player
 			emit_signal("gameOver")
-			#show notification
-			gui.showGameOver("GAME OVER! You're killed by " + car)
-		3: #new highscore
-			pass
+			#show notification if not new highscore
+			if not newHighscore:
+				gui.showGameOver("GAME OVER! You're killed by " + car)
+			else:
+				gui.showNewHighscore()

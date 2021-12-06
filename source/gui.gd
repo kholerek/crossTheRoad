@@ -1,5 +1,7 @@
 extends Control
 
+export(Script) var gameSaveClass
+
 #timeAndPoint
 onready var timeAndPointsControl = $timeAndPoints
 onready var secondsLabel = $timeAndPoints/seconds
@@ -30,11 +32,22 @@ onready var debug2Label = $debugContainer/debug2Label
 var gameNotStarted = true
 var gameReadyToStart = false
 var waitingForName = false
+var saveVars = ["name", "points"]
+var highscoreName= "NOBODY"
+var highscorePoints = 0
+var newHighscore
+var gameOver
 
 func _ready():
 	#prepare screen
 	hideAllMenus()
 	showStartMenu()
+	
+	#load highscore values
+	if loadHighscore():
+		highscoreLabel.text = highscoreName + " " + String(highscorePoints)
+	else:
+		highscoreLabel.text = "ERROR"
 	
 func _input(event):
 	if event.is_action_pressed("ui_accept") and gameReadyToStart:
@@ -42,6 +55,12 @@ func _input(event):
 		showTimeAndPointsControl()
 		gameReadyToStart = false
 		gameNotStarted = false
+	elif event.is_action_pressed("ui_accept") and newHighscore:
+		saveHighscore()
+		get_tree().reload_current_scene()
+	#when game is over and player press spacebar
+	elif Input.is_action_just_pressed("ui_accept") and gameOver and not newHighscore:
+		get_tree().reload_current_scene()
 
 func showStartMenu():
 	startMenuControl.visible = true
@@ -58,9 +77,38 @@ func showPressSpacebarMenu():
 	gameReadyToStart = true
 	
 func showNewHighscore():
+	newHighscore = true
 	yourNameEdit.visible = true
 	yourNameEdit.grab_focus()
 	waitingForName = true
+	
+func verifySaveHighscore(save):
+	for v in saveVars:
+		if save.get(v) == null:
+			return false
+		
+	return true
+
+func saveHighscore():
+	var newSave = gameSaveClass.new()
+	newSave.name = yourNameEdit.text
+	newSave.points = int(pointsLabel.text)
+	
+	ResourceSaver.save("user://save.res", newSave)
+	
+func loadHighscore():
+	var dir = Directory.new()
+	if not dir.file_exists("user://save.res"):
+		return false
+	
+	var highscoreSave = load("user://save.res")
+	if not verifySaveHighscore(highscoreSave):
+		return false
+	
+	highscoreName = highscoreSave.name
+	highscorePoints = highscoreSave.points
+	
+	return true
 	
 func showGameOver(notification):
 	notificationLabel.text = notification
