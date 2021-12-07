@@ -11,6 +11,7 @@ onready var pointsLabel = $timeAndPoints/points
 onready var startMenuControl = $startMenu
 onready var startButton = $startMenu/startButton
 onready var highscoreButton = $startMenu/highscoreButton
+onready var fullscreenButton = $startMenu/fullscreenButton
 
 #highscoreMenu
 onready var highscoreMenuControl = $highscoreMenu
@@ -48,19 +49,25 @@ func _ready():
 		highscoreLabel.text = highscoreName + " " + String(highscorePoints)
 	else:
 		highscoreLabel.text = "ERROR"
-	
+
+#keys (spacebar and enter)
 func _input(event):
+	#press spacebar to start
 	if event.is_action_pressed("ui_accept") and gameReadyToStart:
 		hideAllMenus()
 		showTimeAndPointsControl()
 		gameReadyToStart = false
 		gameNotStarted = false
-	elif event.is_action_pressed("ui_accept") and newHighscore:
+	#press enter after enter your name (new highscore)
+	elif event.is_action_pressed("ui_enter") and newHighscore:
 		saveHighscore()
 		get_tree().reload_current_scene()
-	#when game is over and player press spacebar
+	#when game is over and player press spacebar to restart game
 	elif Input.is_action_just_pressed("ui_accept") and gameOver and not newHighscore:
 		get_tree().reload_current_scene()
+	#escape anytime
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
 
 func showStartMenu():
 	startMenuControl.visible = true
@@ -132,6 +139,9 @@ func _on_startButton_pressed():
 func _on_highscoreButton_pressed():
 	hideAllMenus()
 	showHighscoreMenu()
+	
+func _on_fullscreenButton_pressed():
+	OS.window_fullscreen = !OS.window_fullscreen
 
 func _on_backButton_pressed():
 	hideAllMenus()
@@ -146,4 +156,12 @@ func setTimeInMiliseconds(miliseconds):
 	if timeToDisplay.find(".") == -1:
 		timeToDisplay += ".0"
 	secondsLabel.text = timeToDisplay +" s"
-	pass	
+	secondsAnimation(timeToDisplay)
+
+#change color of seconds font
+func secondsAnimation(time):
+	if float(time) >= 10.0:
+		secondsLabel.add_color_override("font_color", Color(0, 0, 0, 1)) # black
+	else:
+		secondsLabel.add_color_override("font_color", Color(0.89, 0.69, 0.13, 1)) #red
+	
