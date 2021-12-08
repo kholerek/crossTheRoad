@@ -53,6 +53,7 @@ func _process(delta):
 				position.x = rightPosition
 				playerDirection = playerState.IDLE
 				points = points+1
+				$pointsSound.play()
 				
 		playerState.RUN_LEFT: 
 			#actions
@@ -65,6 +66,7 @@ func _process(delta):
 				position.x = leftPosition
 				playerDirection = playerState.IDLE
 				points = points+1
+				$pointsSound.play()
 		
 		playerState.DEAD:
 			#actions
@@ -115,3 +117,4 @@ func _process(delta):
 func _gameOver():
 	print("player dead")
 	playerDirection = playerState.DEAD
+	$collisionSound.play(2.2)

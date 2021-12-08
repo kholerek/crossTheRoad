@@ -1,3 +1,2 @@
 toDo crossTheRoad
-- music (intro, game, gameover, time bellow 10, time bellow 5)
 - extras (higher player speed, add time, bonus point, immortality)

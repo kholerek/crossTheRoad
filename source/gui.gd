@@ -163,5 +163,5 @@ func secondsAnimation(time):
 	if float(time) >= 10.0:
 		secondsLabel.add_color_override("font_color", Color(0, 0, 0, 1)) # black
 	else:
-		secondsLabel.add_color_override("font_color", Color(0.89, 0.69, 0.13, 1)) #red
+		secondsLabel.add_color_override("font_color", Color(0.92, 0.22, 0.3, 1)) #red
 	

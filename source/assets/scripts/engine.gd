@@ -13,6 +13,7 @@ signal gameOver
 
 var gameOver = false
 var lastAmountOfPoints = 0
+var musicQueue = 0
 
 func _ready():
 	#timerGameOver
@@ -29,6 +30,8 @@ func _process(_delta):
 		if traffic.trafficOn and timerGameOver.is_stopped() and not gameOver:
 			timerGameOver.start()
 			player.gameNotStarted = false
+			#change music to level music
+			musicQueue = 1 
 	
 	#update amount of points and time
 	gui.setPoints(player.points)
@@ -36,6 +39,7 @@ func _process(_delta):
 	
 	#process functions
 	ifGotPoint()
+	music()
 
 func _on_timerGameOver_timeout():
 	gameIsOver(1, null)
@@ -89,3 +93,10 @@ func gameIsOver(type, car):
 				gui.showGameOver("GAME OVER! You're killed by " + car)
 			else:
 				gui.showNewHighscore()
+				
+func music():
+	if musicQueue == 1 and not $levelMusic.playing and not gameOver:
+		$introMusic.stop()
+		$levelMusic.play()
+	elif gameOver:
+		$levelMusic.stop()
