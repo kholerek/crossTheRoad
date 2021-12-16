@@ -18,4 +18,4 @@ __meta__ = {
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -40, -152, -24, -168, 24, -168, 40, -152, 40, -16, 16, 0, -16, 0, -40, -16 )
 
-[connection signal="body_entered" from="." to="." method="_on_car_body_entered" binds= [ "greyCar" ]]
+[connection signal="body_entered" from="." to="." method="_on_car_body_entered" binds= [ "grey car" ]]
