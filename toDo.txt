@@ -1,2 +1,0 @@
-toDo crossTheRoad
-- extras (higher player speed, add time, bonus point, immortality)
